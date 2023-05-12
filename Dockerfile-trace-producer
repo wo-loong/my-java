@@ -6,8 +6,9 @@ WORKDIR /opt/app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 RUN ./mvnw dependency:go-offline
-COPY ./src ./src
-RUN ./mvnw clean install
+COPY ./trace-producer ./trace-producer
+COPY ./trace-consumer ./trace-consumer
+RUN ./mvnw clean install -Dmaven.test.skip=true
 
 
 FROM eclipse-temurin:8
