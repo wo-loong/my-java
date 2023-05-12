@@ -7,12 +7,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="trace-consumer" />
+        <module name="demo" />
         <module name="trace-producer" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="demo" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demo" options="-parameters" />
       <module name="trace-consumer" options="-parameters" />
       <module name="trace-producer" options="-parameters" />
     </option>
