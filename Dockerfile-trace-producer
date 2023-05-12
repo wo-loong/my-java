@@ -1,6 +1,18 @@
+
+# syntax=docker/dockerfile:1
+
+FROM eclipse-temurin:8 as builder
+WORKDIR /opt/app
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:go-offline
+COPY ./src ./src
+RUN ./mvnw clean install
+
+
 FROM eclipse-temurin:8
-ENV BASE_DIR=/home
+WORKDIR /opt/app
 RUN mkdir -p ${BASE_DIR}
-WORKDIR ${BASE_DIR}
-add trace-producer/target/trace-producer-0.0.1-SNAPSHOT.jar  app.jar
-CMD ["sh","-c","java -jar ${JAVA_OPTS} app.jar"]
+COPY --from=builder /opt/app/target/trace-producer-0.0.1-SNAPSHOT.jar /home/app.jar
+CMD ["java", "-jar", "/home/*.jar" ]
+
