@@ -1,6 +1,5 @@
 FROM eclipse-temurin:8
-ENV BASE_DIR=/home
-RUN mkdir -p ${BASE_DIR}
-WORKDIR ${BASE_DIR}
+RUN mkdir -p /home
+WORKDIR /home
 add trace-producer/target/trace-producer-0.0.1-SNAPSHOT.jar  app.jar
 CMD ["sh","-c","java -jar app.jar"]
