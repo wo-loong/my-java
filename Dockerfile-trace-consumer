@@ -3,4 +3,5 @@ ENV BASE_DIR=/home
 RUN mkdir -p ${BASE_DIR}
 WORKDIR ${BASE_DIR}
 add trace-consumer/target/trace-consumer-0.0.1-SNAPSHOT.jar  app.jar
+add trace-consumer/skywalking-agent  .
 CMD ["sh","-c","java -jar ${JAVA_OPTS} app.jar"]
